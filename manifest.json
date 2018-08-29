@@ -10,7 +10,7 @@
     "128": "img/i128.png"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistent": true
   },
   "browser_action": {
@@ -22,9 +22,11 @@
   },
   "permissions": [
     "http://*/*",
+    "https://*/*",
     "tabs",
     "storage",
-    "webRequest"
+    "webRequest",
+    "webRequestBlocking"
   ],
   "web_accessible_resources": ["img/i128.png"]
 }
