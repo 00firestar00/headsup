@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "ModHeader",
+  "description": "",
+  "version": "0.0.1",
+  "icons": {
+    "16": "img/i16.png",
+    "48": "img/i48.png",
+    "128": "img/i128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "img/i48.png",
+      "38": "img/i48.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "http://*/*",
+    "tabs",
+    "storage",
+    "webRequest"
+  ],
+  "web_accessible_resources": ["img/i128.png"]
+}
