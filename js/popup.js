@@ -1,12 +1,20 @@
 
 let headers = document.getElementsByClassName("header");
 
-function saveHeader(header) {
-    chrome.storage.sync.set({
-        header: header
-    }, function() {
-        console.log("Saved");
-    });
+function saveHeader() {
+    for (let i = 0; i < headers.length; i++) {
+        let name = headers[i].getElementsByClassName("name")[0];
+        let value = headers[i].getElementsByClassName("value")[0];
+        if (name.value === "" || value.value === "") {
+            continue;
+        }
+        chrome.storage.sync.set({
+            header: { "name": name.value, "value": value.value}
+        }, function() {
+            console.log("Saved");
+            console.log({ "name": name.value, "value": value.value});
+        });
+    }
 }
 
 function restore_options() {
@@ -18,6 +26,8 @@ function restore_options() {
             headers[i].getElementsByClassName("name")[0].value = items.header.name;
             headers[i].getElementsByClassName("value")[0].value = items.header.value;
         }
+        console.log("Restore");
+        console.log(items);
     });
 }
 
