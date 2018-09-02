@@ -9,6 +9,10 @@
             min-width: 600px;
             min-height: 600px;
         }
+
+        .mdl-textfield {
+            padding: 0;
+        }
     </style>
 </head>
 
@@ -17,13 +21,17 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <span class="mdl-layout-title">ModHeader</span>
+            <div class="mdl-layout-spacer"></div>
+            <label id="add_button" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">add</i>
+            </label>
         </div>
     </header>
     <main class="mdl-layout__content">
         <div class="page-content">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--8-col">
-                    <ul class="demo-list-control mdl-list">
+                    <ul id="header_selector" class="demo-list-control mdl-list">
                         <li class="mdl-list__item">
                             <span class="mdl-list__item-secondary-action">
                                 <div class="mdl-cell mdl-cell--1-col">
@@ -40,7 +48,7 @@
                                 </div>
                             </span>
                         </li>
-                        <li class="header mdl-list__item">
+                        <li id="first_row" class="row header mdl-list__item">
                             <span class="mdl-list__item-secondary-action">
                                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="active">
                                     <input type="checkbox" id="active" class="mdl-checkbox__input" checked/>
