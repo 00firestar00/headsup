@@ -6,10 +6,11 @@ function saveHeaders() {
     for (let i = 0; i < doc_headers.length; i++) {
         let name = doc_headers[i].getElementsByClassName("name")[0];
         let value = doc_headers[i].getElementsByClassName("value")[0];
+        let active = doc_headers[i].getElementsByClassName("active")[0];
         if (name.value === "" || value.value === "") {
             continue;
         }
-        headers.push({"name": name.value, "value": value.value})
+        headers.push({"name": name.value, "value": value.value, "active": active.checked})
     }
 
     chrome.storage.sync.set({
@@ -25,15 +26,17 @@ function addListeners() {
     for (let i = 0; i < doc_headers.length; i++) {
         let name = doc_headers[i].getElementsByClassName("name")[0];
         let value = doc_headers[i].getElementsByClassName("value")[0];
-        name.addEventListener('input', saveHeaders);
-        value.addEventListener('input', saveHeaders);
+        let active = doc_headers[i].getElementsByClassName("active")[0];
+        name.addEventListener("input", saveHeaders);
+        value.addEventListener("input", saveHeaders);
+        active.addEventListener("change", saveHeaders);
     }
 }
 
 function restore_options() {
     // Use defaults
     chrome.storage.sync.get({
-        "headers": {"name": "", "value": ""},
+        "headers": {"name": "", "value": "", "active": ""},
         "count": row_count
     }, function (items) {
         for (let i = 0; i < items.count; i++) {
@@ -45,6 +48,7 @@ function restore_options() {
             }
             doc_headers[i].getElementsByClassName("name")[0].value = items.headers[i].name;
             doc_headers[i].getElementsByClassName("value")[0].value = items.headers[i].value;
+            doc_headers[i].getElementsByClassName("active")[0].value = items.headers[i].active;
         }
         console.log("Restore");
         console.log(items);
@@ -56,11 +60,19 @@ function addRow() {
     let row = document.querySelector("#first_row");
     let clone = row.cloneNode(true);
     clone.removeAttribute("id");
+    let rand = Math.random().toString(36).substring(7);
+    clone.querySelector("#active").setAttribute("id", rand);
+    let lbl = clone.querySelector("#label_active");
+    lbl.setAttribute("for", rand);
+    lbl.setAttribute("id", rand);
+    componentHandler.upgradeElements(lbl);
     document.querySelector("#header_selector").appendChild(clone);
     let name = clone.getElementsByClassName("name")[0];
     let value = clone.getElementsByClassName("value")[0];
-    name.addEventListener('input', saveHeaders);
-    value.addEventListener('input', saveHeaders);
+    let active = clone.getElementsByClassName("active")[0];
+    name.addEventListener("input", saveHeaders);
+    value.addEventListener("input", saveHeaders);
+    active.addEventListener("input", saveHeaders);
     row_count++;
     chrome.storage.sync.set({
         "count": row_count
@@ -70,7 +82,7 @@ function addRow() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', restore_options);
+document.addEventListener("DOMContentLoaded", restore_options);
 
 addButton = document.querySelector("#add_button");
-addButton.addEventListener('click', addRow);
+addButton.addEventListener("click", addRow);

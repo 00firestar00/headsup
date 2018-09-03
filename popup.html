@@ -10,8 +10,8 @@
             min-height: 600px;
         }
 
-        .mdl-textfield {
-            padding: 0;
+        .mdl-textfield, .mdl-list__item {
+            padding: 4px;
         }
     </style>
 </head>
@@ -50,8 +50,8 @@
                         </li>
                         <li id="first_row" class="row header mdl-list__item">
                             <span class="mdl-list__item-secondary-action">
-                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="active">
-                                    <input type="checkbox" id="active" class="mdl-checkbox__input" checked/>
+                                <label id="label_active" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="active">
+                                    <input type="checkbox" id="active" class="active mdl-checkbox__input" checked/>
                                 </label>
                             </span>
                             <span class="mdl-list__item-primary-content">

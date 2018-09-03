@@ -4,16 +4,15 @@ function getHeaders() {
 
 function modifyHeaders(details) {
     let headers = getHeaders();
+    headers.map(function(x) {
+        delete x.active;
+        return x
+    });
+
     details.requestHeaders = details.requestHeaders.concat(headers);
     console.log(details.requestHeaders);
     return {requestHeaders: details.requestHeaders};
 }
-
-chrome.webRequest.onBeforeSendHeaders.addListener(
-    modifyHeaders,
-    {urls: ["<all_urls>"]},
-    ['requestHeaders', 'blocking']
-);
 
 function syncHeaders() {
     chrome.storage.sync.get({
@@ -26,6 +25,12 @@ function syncHeaders() {
 }
 
 document.addEventListener('DOMContentLoaded', syncHeaders);
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
+    modifyHeaders,
+    {urls: ["<all_urls>"]},
+    ['requestHeaders', 'blocking']
+);
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
