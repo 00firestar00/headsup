@@ -6,12 +6,17 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <style type="text/css">
         body {
-            min-width: 600px;
+            min-width: 640px;
             min-height: 600px;
         }
 
+        .mdl-checkbox {
+            padding: 8px;
+            margin-left: 8px;
+        }
+
         .mdl-textfield, .mdl-list__item {
-            padding: 4px;
+            padding: 8px;
         }
     </style>
 </head>
@@ -33,29 +38,26 @@
                 <div class="mdl-cell mdl-cell--8-col">
                     <ul id="header_selector" class="demo-list-control mdl-list">
                         <li class="mdl-list__item">
-                            <span class="mdl-list__item-secondary-action">
-                                <div class="mdl-cell mdl-cell--1-col">
-                                </div>
-                                <div class="mdl-cell mdl-cell--1-col">
-                                </div>
-                            </span>
                             <span class="mdl-list__item-primary-content">
-                                <div class="mdl-cell mdl-cell--4-col">
+                                <div class="mdl-cell mdl-cell--1-col">
+                                </div>
+                                <div class="mdl-cell mdl-cell--3-col">
                                     Name
                                 </div>
-                                <div class="mdl-cell mdl-cell--4-col">
+                                <div class="mdl-cell mdl-cell--3-col">
                                     Value
                                 </div>
                             </span>
                         </li>
                         <li id="first_row" class="row header mdl-list__item">
                             <span class="mdl-list__item-secondary-action">
-                                <label id="label_active" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="active">
+                                <label id="label_active" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
+                                       for="active">
                                     <input type="checkbox" id="active" class="active mdl-checkbox__input" checked/>
                                 </label>
                             </span>
                             <span class="mdl-list__item-primary-content">
-                                <div class="mdl-cell mdl-cell--3-col">
+                                <div class="mdl-cell mdl-cell--2-col">
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="name mdl-textfield__input" type="text">
                                     </div>
@@ -64,6 +66,11 @@
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="value mdl-textfield__input" type="text">
                                     </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col">
+                                    <label class="mdl-button mdl-js-button mdl-button--icon mdl-button--accent">
+                                        <i class="material-icons">clear</i>
+                                    </label>
                                 </div>
                             </span>
                         </li>
