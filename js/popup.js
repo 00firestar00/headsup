@@ -61,11 +61,12 @@ function addRow() {
     let clone = row.cloneNode(true);
     clone.removeAttribute("id");
     let rand = Math.random().toString(36).substring(7);
-    clone.querySelector("#active").setAttribute("id", rand);
+    let a = clone.querySelector("#active");
+    a.setAttribute("id", rand);
     let lbl = clone.querySelector("#label_active");
     lbl.setAttribute("for", rand);
-    lbl.setAttribute("id", rand);
-    componentHandler.upgradeElements(lbl);
+    lbl.setAttribute("id", "label"+rand);
+    componentHandler.upgradeElements(a);
     document.querySelector("#header_selector").appendChild(clone);
     let name = clone.getElementsByClassName("name")[0];
     let value = clone.getElementsByClassName("value")[0];
