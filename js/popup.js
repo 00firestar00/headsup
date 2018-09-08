@@ -49,8 +49,8 @@ function restoreOptions() {
         for (let i = 0; i < items.count; i++) {
             addRow();
         }
-        for (let i = 0; i < doc_headers.length; i++) {
-            if (items.headers[i].value === "" || items.headers[i].value === "") {
+        for (let i = 0; i < doc_headers.length && i < items.headers.length; i++) {
+            if (items.headers[i].name === "" || items.headers[i].value === "") {
                 continue;
             }
             doc_headers[i].querySelector(".name").value = items.headers[i].name;
@@ -93,6 +93,8 @@ function addRow() {
     let active = clone.querySelector(".active");
     let clear = clone.querySelector(".clear");
 
+    name.value = "";
+    value.value = "";
     name.addEventListener("input", saveHeaders);
     value.addEventListener("input", saveHeaders);
     active.addEventListener("input", saveHeaders);
