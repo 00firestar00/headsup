@@ -8,6 +8,24 @@ document.querySelector(".clear").addEventListener("click", removeRow);
 addButton = document.querySelector("#add_button");
 addButton.addEventListener("click", addRow);
 
+const ibutton = document.querySelector('#import_button');
+const idialog = document.querySelector('#import_box');
+ibutton.addEventListener('click', function() {
+    idialog.showModal();
+});
+idialog.querySelector('.close').addEventListener('click', function() {
+    idialog.close();
+});
+
+const ebutton = document.querySelector('#export_button');
+const edialog = document.querySelector('#export_box');
+ebutton.addEventListener('click', function() {
+    edialog.showModal();
+});
+edialog.querySelector('.close').addEventListener('click', function() {
+    edialog.close();
+});
+
 function saveHeaders() {
     let headers = [];
     for (let i = 0; i < doc_headers.length; i++) {
@@ -50,12 +68,12 @@ function restoreOptions() {
             addRow();
         }
         for (let i = 0; i < doc_headers.length && i < items.headers.length; i++) {
-            if (items.headers[i].name === "" || items.headers[i].value === "") {
+            if (items.headers[i].name === "" && items.headers[i].value === "") {
                 continue;
             }
             doc_headers[i].querySelector(".name").value = items.headers[i].name;
             doc_headers[i].querySelector(".value").value = items.headers[i].value;
-            doc_headers[i].querySelector(".active").value = items.headers[i].active;
+            doc_headers[i].querySelector(".active").checked = items.headers[i].active;
         }
         console.log("Restore");
         console.log(items);

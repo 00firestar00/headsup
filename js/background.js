@@ -2,6 +2,10 @@ function getHeaders() {
     return JSON.parse(localStorage.getItem("headers"));
 }
 
+function setHeaders(headers) {
+    localStorage.setItem("headers", JSON.stringify(headers));
+}
+
 function modifyHeaders(details) {
     let headers = getHeaders();
     headers.map(function(x) {
@@ -9,6 +13,7 @@ function modifyHeaders(details) {
         return x
     });
 
+    chrome.browserAction.setBadgeText({text: headers.length.toString()});
     details.requestHeaders = details.requestHeaders.concat(headers);
     console.log(details.requestHeaders);
     return {requestHeaders: details.requestHeaders};
@@ -18,7 +23,9 @@ function syncHeaders() {
     chrome.storage.sync.get({
         "headers": [],
     }, function (items) {
-        localStorage.setItem("headers", JSON.stringify(items.headers));
+        let h = items.headers.filter(h => h.active);
+        setHeaders(h);
+        chrome.browserAction.setBadgeText({text: h.length.toString()});
         console.log("Restore2");
         console.log(items);
     });
@@ -38,3 +45,5 @@ chrome.runtime.onMessage.addListener(
         console.log("syncing headers from main")
     }
 );
+
+//{"title":"Profile 1","hideComment":true,"headers":[{"enabled":false,"name":"MyRyzenServer","value":"a7s8dhaisd7kaygsduykasgd6y","comment":""},{"enabled":false,"name":"Api-Key","value":"k6Bcg69pWqqGK9k","comment":""},{"enabled":false,"name":"Api-Appid","value":"2_22634_EYtdpSTNw","comment":""}],"respHeaders":[],"filters":[],"appendMode":""}
