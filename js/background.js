@@ -8,12 +8,13 @@ function setHeaders(headers) {
 
 function modifyHeaders(details) {
     let headers = getHeaders();
-    headers.map(function(x) {
+    headers.map(function (x) {
         delete x.active;
         return x
     });
-
-    chrome.browserAction.setBadgeText({text: headers.length.toString()});
+    if (headers.length > 0) {
+        chrome.browserAction.setBadgeText({text: headers.length.toString()});
+    }
     details.requestHeaders = details.requestHeaders.concat(headers);
     console.log(details.requestHeaders);
     return {requestHeaders: details.requestHeaders};
@@ -25,7 +26,9 @@ function syncHeaders() {
     }, function (items) {
         let h = items.headers.filter(h => h.active);
         setHeaders(h);
-        chrome.browserAction.setBadgeText({text: h.length.toString()});
+        if (h.length > 0) {
+            chrome.browserAction.setBadgeText({text: h.length.toString()});
+        }
         console.log("Restore2");
         console.log(items);
     });

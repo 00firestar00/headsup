@@ -32,7 +32,7 @@ function saveHeaders() {
         let name = doc_headers[i].querySelector(".name");
         let value = doc_headers[i].querySelector(".value");
         let active = doc_headers[i].querySelector(".active");
-        if (name.value === "" || value.value === "") {
+        if (name.value === "" && value.value === "") {
             continue;
         }
         headers.push({"name": name.value, "value": value.value, "active": active.checked})
@@ -66,9 +66,7 @@ function restoreOptions() {
     }, function (items) {
         for (let i = 0; i < items.count; i++) {
             addRow();
-        }
-        for (let i = 0; i < doc_headers.length && i < items.headers.length; i++) {
-            if (items.headers[i].name === "" && items.headers[i].value === "") {
+            if (items.headers[i].name === "" || items.headers[i].value === "") {
                 continue;
             }
             doc_headers[i].querySelector(".name").value = items.headers[i].name;
@@ -98,6 +96,8 @@ function addRow() {
     let rand = Math.random().toString(36).substring(7);
 
     clone.setAttribute("id", "row"+rand);
+    clone.removeAttribute("style");
+    clone.classList.add("header");
     let a = clone.querySelector("#active");
     let lbl = clone.querySelector("#label_active");
     a.setAttribute("id", rand);
