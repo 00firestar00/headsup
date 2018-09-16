@@ -103,19 +103,3 @@ function addRow() {
     active.addEventListener("input", saveHeaders);
     clear.addEventListener("click", removeRow);
 }
-// <span class="mdl-list__item-secondary-action">
-//     <label id="labelud0t57" class="label mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded is-checked" for="ud0t57" data-upgraded=",MaterialCheckbox,MaterialRipple">
-//     <input type="checkbox" id="ud0t57" class="active mdl-checkbox__input">
-//     <span class="mdl-checkbox__focus-helper"></span><span class="mdl-checkbox__box-outline"><span class="mdl-checkbox__tick-outline"></span>
-// </span><span class="mdl-checkbox__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple">
-// <span class="mdl-ripple">
-// </span></span></label>
-// </span>
-// <span class="mdl-list__item-secondary-action">
-//     <label id="labelvrkqr" class="label mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect is-checked mdl-js-ripple-effect--ignore-events is-upgraded" for="vrkqr" data-upgraded=",MaterialCheckbox,MaterialRipple">
-//     <input type="checkbox" id="vrkqr" class="active mdl-checkbox__input">
-//     <span class="mdl-checkbox__focus-helper"></span><span class="mdl-checkbox__box-outline"><span class="mdl-checkbox__tick-outline"></span>
-// </span><span class="mdl-checkbox__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple">
-// <span class="mdl-ripple is-animating" style="width: 103.823px; height: 103.823px; transform: translate(-50%, -50%) translate(18px, 18px);">
-// </span></span></label>
-// </span>
